@@ -39,6 +39,6 @@ $zipFileUrl = "https://github.com/AqStudio1/LON-DC1/archive/refs/heads/main.zip"
 $zipFilePath = "repository.zip"
 Invoke-WebRequest -Uri $zipFileUrl -OutFile $zipFilePath
 Expand-Archive -Path $zipFilePath -DestinationPath ".\"
-Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "E:\Labfiles" -Recurse
+Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "C:\Labfiles" -Recurse
 Remove-Item -Path ".\repository.zip" -Recurse -Force
 Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
