@@ -34,8 +34,8 @@ Add-ADGroupMember -Identity IT -Members Jane
 New-ADUser -GivenName "Jon" -Surname "Cantrell" -Name "Jon Cantrell" -DisplayName "Jon Cantrell" -City "London" -Country "GB" -UserPrincipalName "Jon@Adatum.com" -SamAccountName "Jon" -PasswordNeverExpires $true -Department "IT" -Company "Adatum" -Path "OU=IT,DC=Adatum,DC=com" -AccountPassword $password -Enabled $true
 Add-ADGroupMember -Identity IT -Members Jon
 
-Resize-Partition -DriveLetter C -Size 100GB
-New-Partition -DiskNumber 0 -Size 25GB -AssignDriveLetter
+Resize-Partition -DriveLetter C -Size 115GB
+New-Partition -DiskNumber 0 -Size 10GB -AssignDriveLetter
 Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel "Allfiles"
 
 $zipFileUrl = "https://github.com/AqStudio1/LON-DC1/archive/refs/heads/main.zip"
