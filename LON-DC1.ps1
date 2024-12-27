@@ -43,4 +43,5 @@ $zipFilePath = "repository.zip"
 Invoke-WebRequest -Uri $zipFileUrl -OutFile $zipFilePath
 Expand-Archive -Path $zipFilePath -DestinationPath ".\"
 Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "E:\Labfiles" -Recurse
+Remove-Item -Path ".\repository.zip" -Recurse -Force
 Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
