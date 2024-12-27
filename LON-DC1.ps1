@@ -34,6 +34,7 @@ Add-ADGroupMember -Identity IT -Members Jane
 New-ADUser -GivenName "Jon" -Surname "Cantrell" -Name "Jon Cantrell" -DisplayName "Jon Cantrell" -City "London" -Country "GB" -UserPrincipalName "Jon@Adatum.com" -SamAccountName "Jon" -PasswordNeverExpires $true -Department "IT" -Company "Adatum" -Path "OU=IT,DC=Adatum,DC=com" -AccountPassword $password -Enabled $true
 Add-ADGroupMember -Identity IT -Members Jon
 
+Remove-Item -Path "C:\Labfiles" -Recurse -Force
 $zipFileUrl = "https://github.com/AqStudio1/LON-DC1/archive/refs/heads/main.zip"
 $zipFilePath = "repository.zip"
 Invoke-WebRequest -Uri $zipFileUrl -OutFile $zipFilePath
