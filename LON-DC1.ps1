@@ -1,3 +1,15 @@
+Resize-Partition -DriveLetter C -Size 115GB
+New-Partition -DiskNumber 0 -Size 10GB -AssignDriveLetter
+Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel "Allfiles"
+
+$zipFileUrl = "https://github.com/AqStudio1/LON-DC1/archive/refs/heads/main.zip"
+$zipFilePath = "repository.zip"
+Invoke-WebRequest -Uri $zipFileUrl -OutFile $zipFilePath
+Expand-Archive -Path $zipFilePath -DestinationPath ".\"
+Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "E:\Labfiles" -Recurse
+Remove-Item -Path ".\repository.zip" -Recurse -Force
+Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
+
 Import-Module ActiveDirectory
 
 Remove-ADUser -Identity "Jon" -Confirm:$false
@@ -33,15 +45,3 @@ New-ADUser -GivenName "Jane" -Surname "Dow" -Name "Jane Dow" -DisplayName "Jane 
 Add-ADGroupMember -Identity IT -Members Jane
 New-ADUser -GivenName "Jon" -Surname "Cantrell" -Name "Jon Cantrell" -DisplayName "Jon Cantrell" -City "London" -Country "GB" -UserPrincipalName "Jon@Adatum.com" -SamAccountName "Jon" -PasswordNeverExpires $true -Department "IT" -Company "Adatum" -Path "OU=IT,DC=Adatum,DC=com" -AccountPassword $password -Enabled $true
 Add-ADGroupMember -Identity IT -Members Jon
-
-Resize-Partition -DriveLetter C -Size 115GB
-New-Partition -DiskNumber 0 -Size 10GB -AssignDriveLetter
-Format-Volume -DriveLetter E -FileSystem NTFS -NewFileSystemLabel "Allfiles"
-
-$zipFileUrl = "https://github.com/AqStudio1/LON-DC1/archive/refs/heads/main.zip"
-$zipFilePath = "repository.zip"
-Invoke-WebRequest -Uri $zipFileUrl -OutFile $zipFilePath
-Expand-Archive -Path $zipFilePath -DestinationPath ".\"
-Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "E:\Labfiles" -Recurse
-Remove-Item -Path ".\repository.zip" -Recurse -Force
-Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
