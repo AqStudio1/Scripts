@@ -42,3 +42,6 @@ Expand-Archive -Path $zipFilePath -DestinationPath ".\"
 Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "C:\Labfiles" -Recurse
 Remove-Item -Path ".\repository.zip" -Recurse -Force
 Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
+
+icacls "C:\Labfiles" /grant "Adatum\Domain Users:(OI)(CI)F" /T
+New-SmbShare -Name "Labfiles" -Path "C:\Labfiles" -FullAccess "Everyone"
