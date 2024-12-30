@@ -45,3 +45,21 @@ Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
 
 icacls "C:\Labfiles" /grant "Adatum\Domain Users:(OI)(CI)F" /T
 New-SmbShare -Name "Labfiles" -Path "C:\Labfiles" -FullAccess "Everyone"
+
+$serverName = "LON-DC1"
+$scopeName = "Adatum"
+$startIP = "172.16.0.160"
+$endIP = "172.16.0.190"
+$subnetID = "172.16.0.0"
+$subnetMask = "255.255.0.0"
+$gateway = "172.16.0.1"
+$dnsServers = @("172.16.0.10", "8.8.8.8")
+Install-WindowsFeature -Name "DHCP" -IncludeManagementTools
+Import-Module DhcpServer
+Add-DhcpServerInDC -DnsName $env:COMPUTERNAME -IPAddress (Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.IPEnabled -eq $true }).IPAddress[0]
+Add-DhcpServerv4Scope -Name $scopeName -StartRange $startIP -EndRange $endIP -SubnetMask $subnetMask
+Set-DhcpServerv4OptionValue -ScopeId $subnetID -Router $gateway
+Set-DhcpServerv4OptionValue -ScopeId $subnetID -DnsServer $dnsServers
+Set-DhcpServerv4Scope -ScopeId $subnetID -State Active
+
+Restart-Computer -Force
