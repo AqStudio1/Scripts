@@ -12,7 +12,7 @@ Remove-Item -Path ".\repository.zip" -Recurse -Force
 Remove-Item -Path ".\LON-CL1-main" -Recurse -Force
 
 New-Item -ItemType Directory -Path "E:\Labfiles\Tools"
-Invoke-WebRequest -Uri "https://aka.ms/WACDownload" -OutFile "E:\Labfiles\Tools\WindowsAdminCenter.exe"
+Invoke-WebRequest -Uri "https://download.microsoft.com/download/1/0/5/1059800B-F375-451C-B37E-758FFC7C8C8B/WindowsAdminCenter2110.msi" -OutFile "E:\Labfiles\Tools\WindowsAdminCenter2110.msi"
 
 Get-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" | Set-NetFirewallRule -Profile Domain,Private,Public -Enabled True
 Set-NetFirewallRule -DisplayGroup "Network Discovery" -Profile Domain,Private,Public -Enabled True
