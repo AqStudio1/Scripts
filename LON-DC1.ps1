@@ -44,6 +44,8 @@ Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
 icacls "C:\Labfiles" /grant "Adatum\Domain Users:(OI)(CI)F" /T
 New-SmbShare -Name "Labfiles" -Path "C:\Labfiles" -FullAccess "Everyone"
 
+Install-WindowsFeature BitLocker -IncludeAllSubFeature -IncludeManagementTools
+
 $serverName = "LON-DC1"
 $scopeName = "Adatum"
 $startIP = "172.16.0.160"
