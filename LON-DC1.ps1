@@ -41,6 +41,14 @@ Copy-Item -Path ".\LON-DC1-main\Labfiles" -Destination "C:\Labfiles" -Recurse
 Remove-Item -Path ".\repository.zip" -Recurse -Force
 Remove-Item -Path ".\LON-DC1-main" -Recurse -Force
 
+New-Item -ItemType Directory -Path "C:\Labfiles\Apps\PowerBI"
+Invoke-WebRequest -Uri "https://download.microsoft.com/download/8/8/0/880BCA75-79DD-466A-927D-1ABF1F5454B0/PBIDesktopSetup_x64.exe" -OutFile "C:\Labfiles\Apps\PowerBI\PBIDesktopSetup_x64.exe"
+
+New-Item -ItemType Directory -Path "C:\Labfiles\Apps\PowerToys"
+Invoke-WebRequest -Uri "https://github.com/microsoft/PowerToys/releases/download/v0.87.1/PowerToysSetup-0.87.1-x64.exe" -OutFile "C:\Labfiles\Apps\PowerToys\PowerToysSetup-x64.exe"
+
+New-Item -ItemType Directory -Path "C:\Labfiles\Provisioning"
+
 icacls "C:\Labfiles" /grant "Adatum\Domain Users:(OI)(CI)F" /T
 New-SmbShare -Name "Labfiles" -Path "C:\Labfiles" -FullAccess "Everyone"
 
