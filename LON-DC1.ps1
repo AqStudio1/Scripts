@@ -3,8 +3,6 @@ Import-Module ActiveDirectory
 Remove-ADUser -Identity "Jon" -Confirm:$false
 Remove-ADUser -Identity "Terry" -Confirm:$false
 
-Remove-ADObject -Identity "CN=LON-CL2,CN=Computers,DC=Adatum,DC=COM" -Confirm:$false -Recursive
-
 $password = ConvertTo-SecureString -AsPlainText "Pa55w.rd" -Force
 
 New-ADUser -GivenName "Paul" -Surname "Koch" -Name "Paul Koch" -DisplayName "Paul Koch" -City "London" -Country "GB" -UserPrincipalName "Paul@Adatum.com" -SamAccountName "Paul" -PasswordNeverExpires $true -Department "Sales" -Company "Adatum" -Path "OU=Sales,DC=Adatum,DC=com" -AccountPassword $password -Enabled $true
