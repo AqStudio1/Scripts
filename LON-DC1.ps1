@@ -62,4 +62,13 @@ Set-DhcpServerv4OptionValue -ScopeId $subnetID -Router $gateway
 Set-DhcpServerv4OptionValue -ScopeId $subnetID -DnsServer $dnsServer
 Set-DhcpServerv4Scope -ScopeId $subnetID -State Active
 
+$ADKDownloadURL = "https://go.microsoft.com/fwlink/?linkid=2289980"
+$WinPEDownloadURL = "https://go.microsoft.com/fwlink/?linkid=2289981"
+$ADKInstallPath = "C:\Program Files (x86)\Windows Kits\10"
+$WinPEInstallPath = "C:\Program Files (x86)\Windows Kits\10"
+Invoke-WebRequest -Uri $ADKDownloadURL -OutFile "$ADKInstallPath\ADKsetup.exe"
+Start-Process -FilePath "$ADKInstallPath\ADKsetup.exe" -ArgumentList "/Quiet /InstallPath `"$ADKInstallPath`" /features OptionId.DeploymentTools OptionId.UserStateMigrationTool" -Wait
+Invoke-WebRequest -Uri $WinPEDownloadURL -OutFile "$WinPEInstallPath\WinPEsetup.exe"
+Start-Process -FilePath "$WinPEInstallPath\WinPEsetup.exe" -ArgumentList "/Quiet /InstallPath `"$WinPEInstallPath`"" -Wait
+
 Restart-Computer -Force
