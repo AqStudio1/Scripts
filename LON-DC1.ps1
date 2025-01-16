@@ -62,6 +62,7 @@ Set-DhcpServerv4Scope -ScopeId $subnetID -State Active
 
 $ADKDownloadURL = "https://go.microsoft.com/fwlink/?linkid=2289980"
 $WinPEDownloadURL = "https://go.microsoft.com/fwlink/?linkid=2289981"
+New-Item -ItemType Directory -Path "C:\Program Files (x86)\Windows Kits\10"
 $ADKInstallPath = "C:\Program Files (x86)\Windows Kits\10"
 $WinPEInstallPath = "C:\Program Files (x86)\Windows Kits\10"
 Invoke-WebRequest -Uri $ADKDownloadURL -OutFile "$ADKInstallPath\ADKsetup.exe"
