@@ -80,4 +80,4 @@ Start-Process -FilePath "$ADKInstallPath\ADKsetup.exe" -ArgumentList "/Quiet /In
 Invoke-WebRequest -Uri $WinPEDownloadURL -OutFile "$WinPEInstallPath\WinPEsetup.exe"
 Start-Process -FilePath "$WinPEInstallPath\WinPEsetup.exe" -ArgumentList "/Quiet /InstallPath `"$WinPEInstallPath`"" -Wait
 
-# Restart-Computer -Force
+Restart-Computer -Force
